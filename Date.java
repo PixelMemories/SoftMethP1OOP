@@ -12,11 +12,12 @@ public class Date implements Comparable <Date>{
     
     //isLeapYear checks if the year is a leap year and works in isValid
     private boolean isLeapYear() {
+        //check if the year is a leap year
         if (year % 4 == 0) {
             if (year % 100 == 0) {
-                return year % 400 == 0; // Divisible by 400, leap year
+                return year % 400 == 0;
             } else {
-                return true; // Divisible by 4 but not 100
+                return true; 
             }
         }
         return false; // Not a leap year
