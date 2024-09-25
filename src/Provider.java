@@ -1,3 +1,6 @@
+/*
+ * @author Divit Shetty
+ */
 public enum Provider {
     PATEL(Location.BRIDGEWATER, Speciality.FAMILY),
     LIM(Location.BRIDGEWATER, Speciality.PEDIATRICIAN),

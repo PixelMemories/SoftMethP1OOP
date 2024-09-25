@@ -1,3 +1,6 @@
+/*
+ * @author Divit Shetty
+ */
 public enum Speciality {
     FAMILY(250),         // $250 per visit
     PEDIATRICIAN(300),   // $300 per visit
