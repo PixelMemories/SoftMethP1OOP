@@ -1,3 +1,6 @@
+/*
+* @author Divit Shetty
+*/
 public class Date implements Comparable <Date>{
     private int year;
     private int month;
@@ -27,7 +30,7 @@ public class Date implements Comparable <Date>{
     // Leap year constants
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
-    public static final int QUATERCENTENNIAL = 400;
+    public static final int QUARTCENTENNIAL = 400;
     public static final int LEAP_YEAR_FEB_DAYS = 29;
     
     // Day boundaries
@@ -38,7 +41,7 @@ public class Date implements Comparable <Date>{
     private boolean isLeapYear() {
         if (year % QUADRENNIAL == 0) {
             if (year % CENTENNIAL == 0) {
-                return year % QUATERCENTENNIAL == 0;
+                return year % QUARTCENTENNIAL == 0;
             } else {
                 return true;
             }
@@ -80,7 +83,7 @@ public class Date implements Comparable <Date>{
     }
 
     // Override toString()
-    // Formate the date
+    // Format the date
     @Override
     public String toString() {
         return String.format("%02d/%02d/%04d", month, day, year);
@@ -127,7 +130,7 @@ public class Date implements Comparable <Date>{
         System.out.println(invalidDate3 + " is valid: " + invalidDate3.isValid());
 
         // Test case 6: Invalid negative day
-        Date invalidDate4 = new Date(2023, FEBRUARY, -1); // Invalid negative day
+        Date invalidDate4 = new Date(2023, FEBRUARY, -1); // Invalid/negative day
         System.out.println(invalidDate4 + " is valid: " + invalidDate4.isValid());
 
         // Test equality

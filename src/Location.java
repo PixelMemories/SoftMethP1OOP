@@ -1,4 +1,6 @@
-
+/*
+ * @author Divit Shetty
+ */
 public enum Location {
     BRIDGEWATER("Somerset", "08807"),
     EDISON("Middlesex", "08817"),
@@ -26,6 +28,11 @@ public enum Location {
         return zip;
     }
 
+    //for city name
+    public String getCity() {
+        return this.name().charAt(0) + this.name().substring(1).toLowerCase();
+    }
+
     // Method to return the county name in uppercase
     public String getCountyUppercase() {
         return county.toUpperCase();
@@ -34,7 +41,7 @@ public enum Location {
     // Override toString to display location details
     @Override
     public String toString() {
-        return String.format("%s County, Zip Code: %s", county, zip);
+        return String.format("%s, %s County, Zip Code: %s", getCity(), county, zip);
     }
 
     // Testing the location enum
@@ -47,6 +54,6 @@ public enum Location {
 
         // Example of accessing a specific location
         Location location1 = Location.PRINCETON;
-        System.out.println("\nLocation 1: County: " + location1.getCounty() + ", Zip: " + location1.getZip());
+        System.out.println("\nLocation 1: City: " + location1.getCity() + ", County: " + location1.getCounty() + ", Zip: " + location1.getZip());
     }
 }

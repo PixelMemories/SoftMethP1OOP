@@ -1,3 +1,6 @@
+/*
+ * @author Divit Shetty
+ */
 public enum Timeslot {
     SLOT1(9, 0),
     SLOT2(10, 45),
@@ -31,7 +34,7 @@ public enum Timeslot {
         return minute;
     }
     
-    // Static method to get Timeslot by index
+    // Get Timeslot by index
     public static Timeslot getIndex(int index) {
         switch (index) {
             case 1: return SLOT1;
