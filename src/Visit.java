@@ -1,3 +1,7 @@
+/*
+ * @author Richard Li - rl902
+ */
+
 public class Visit {
     private Appointment appointment;
     private Visit next;

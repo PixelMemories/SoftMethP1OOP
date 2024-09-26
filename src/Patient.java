@@ -1,3 +1,7 @@
+/*
+ * @author Richard Li - rl902
+ */
+
 import java.util.Date;
 import java.util.Objects;
 

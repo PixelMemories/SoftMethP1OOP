@@ -1,3 +1,7 @@
+/*
+ * @author Richard Li - rl902
+ */
+
 import java.util.Date;
 
 public class Profile implements Comparable<Profile>{
