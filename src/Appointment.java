@@ -2,8 +2,6 @@
  * @author Richard Li - rl902
  */
 
-import java.util.Date;
-
 public class Appointment implements Comparable<Appointment> {
     private Date date;
     private Timeslot timeslot;
@@ -60,6 +58,9 @@ public class Appointment implements Comparable<Appointment> {
         if (obj == null || getClass() != obj.getClass()) return false;
 
         Appointment other = (Appointment) obj;
+
+        if (this.date == null || other.date == null) return false;
+
         return this.date.equals(other.date) &&
                 this.timeslot.equals(other.timeslot) &&
                 this.patient.equals(other.patient);
