@@ -115,4 +115,50 @@ public class List {
             System.out.println(appointments[i]);
         }
     }
+
+    //Testbed main to see if it's working well with other classes
+    public static void main(String[] args) {
+
+        // Create test Profiles (works)
+        Profile profile1 = new Profile("John", "Doe", new Date(1989, Date.DECEMBER, 13));
+        Profile profile2 = new Profile("Jane", "Smith", new Date(1990, Date.NOVEMBER, 5));
+        Profile profile3 = new Profile("Joe", "Johnson", new Date(1987, Date.OCTOBER, 15));
+        Profile profile4 = new Profile("Phoenix", "Wright", new Date(1987, Date.DECEMBER, 16));
+
+        // Create test Appointments (works)
+        Appointment appointment1 = new Appointment(new Date(2024, Date.SEPTEMBER, 30), Timeslot.SLOT1, profile1, Provider.PATEL);
+        Appointment appointment2 = new Appointment(new Date(2024, Date.SEPTEMBER, 30), Timeslot.SLOT2, profile2, Provider.LIM);
+        Appointment appointment3 = new Appointment(new Date(2024, Date.OCTOBER, 1), Timeslot.SLOT3, profile3, Provider.ZIMNES);
+        Appointment appointment4 = new Appointment(new Date(2024, Date.OCTOBER, 1), Timeslot.SLOT1, profile4, Provider.ZIMNES);
+
+        // Create the List object (works)
+        List appointmentList = new List();
+
+        // Test the add method (works)
+        System.out.println("Adding appointments:");
+        appointmentList.add(appointment1);
+        appointmentList.add(appointment2);
+        appointmentList.add(appointment3);
+        appointmentList.add(appointment4);
+        appointmentList.printByAppointment(); // Expect: Print all 4 appointments sorted by date/timeslot/provider
+
+        // Test the contains method (Works)
+        System.out.println("\nChecking if appointments exist:");
+        System.out.println("List contains appointment1: " + appointmentList.contains(appointment1)); //Expect: true
+        System.out.println("List contains appointment3: " + appointmentList.contains(appointment3)); //Expect: true
+        System.out.println("List contains appointment4: " + appointmentList.contains(appointment4)); //Expect: true
+
+        // Test the remove method (works)
+        System.out.println("\nRemoving appointment2:");
+        appointmentList.remove(appointment2);
+        appointmentList.printByAppointment(); // Expect to print only appointment1 and appointment3
+
+        // Test the printByPatient method (works)
+        System.out.println("\nAppointments sorted by patient:");
+        appointmentList.printByPatient(); // Expect to print appointments sorted by patient name
+
+        // Test the printByLocation method (Works)
+        System.out.println("\nAppointments sorted by location:");
+        appointmentList.printByLocation(); // Expect to print appointments sorted by provider's location
+    }
 }
