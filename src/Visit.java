@@ -22,4 +22,10 @@ public class Visit {
     public void setNext(Visit next) {
         this.next = next;
     }
+
+    //might need toString to return appointment details
+    @Override
+    public String toString() {
+        return appointment.toString();
+    }
 }

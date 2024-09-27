@@ -40,4 +40,6 @@ public class Profile implements Comparable<Profile>{
         return lname + ", " + fname + " (DOB: " + dob + ")";
     }
 
+    //Need a testbed main()
+    //Need test cases for compareTo and a testing pdf for this method
 }

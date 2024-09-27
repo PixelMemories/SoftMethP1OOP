@@ -27,6 +27,11 @@ public class Patient implements Comparable<Patient>{
         }
     }
 
+    //Method to get the first visit (needed for MedicalRecord)
+    public Visit getVisits(){
+        return visits; // gives access to the visit list (from the head)
+    }
+
     // Calculate total charge from all visits
     public int charge() {
         int totalCharge = 0;
