@@ -101,6 +101,8 @@ public class MedicalRecord {
         Profile profile5 = new Profile("Clara", "Jones", new Date(2000, Date.APRIL, 25));
 
         // Test adding patients to the medical record
+        // Needs to be done before appointments are created and before adding the visit
+        // Code in Scheduler does this so user doesn't need to
         System.out.println("Adding patients:");
         System.out.println("Add John Doe: " + medicalRecord.addPatient(profile1));  // Should print true
         System.out.println("Add Jane Smith: " + medicalRecord.addPatient(profile2)); // Should print true
