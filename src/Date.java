@@ -1,12 +1,21 @@
-/*
-* @author Divit Shetty
-*/
+/**
+ * This class represents a Date with year, month, and day.
+ * Provides methods to check if a date is valid (isValid()) and to compare dates (compareTo())
+ *
+ * @author Divit Shetty
+ */
 public class Date implements Comparable <Date>{
     private int year;
     private int month;
     private int day;
 
-    //Constructor to initialize the date
+    /**
+     * Constructs a Date object with the specified year, month, and day.
+     *
+     * @param year the year of the date
+     * @param month the month of the date
+     * @param day the day of the date
+     */
     public Date(int year, int month, int day){
         this.year = year;
         this.month = month;
@@ -37,7 +46,11 @@ public class Date implements Comparable <Date>{
     public static final int MIN_DAY = 1;
     
     //isLeapYear checks if the year is a leap year and works in isValid
-    // Check if the year is a leap year
+    /**
+     * Checks whether the year is a leap year.
+     *
+     * @return true if the year is a leap year, false otherwise
+     */
     private boolean isLeapYear() {
         if (year % QUADRENNIAL == 0) {
             if (year % CENTENNIAL == 0) {
@@ -52,6 +65,11 @@ public class Date implements Comparable <Date>{
 
     //isValid to check if the date is a valid calendar date
     //works with isLeapYear to check if it's a leap year
+    /**
+     * Checks if the date is a valid calendar date.
+     *
+     * @return true if the date is valid, false otherwise
+     */
     public boolean isValid() {
         if (month < JANUARY || month > DECEMBER) {
             return false;
@@ -71,6 +89,13 @@ public class Date implements Comparable <Date>{
 
     // Override compareTo()
     // Intended to sort appointments by date
+    /**
+     * Compares this date with another date for sorting.
+     *
+     * @param other the other date to compare
+     * @return a negative integer, zero, or a positive integer as this date
+     *         is earlier than, equal to, or later than the specified date
+     */
     @Override
     public int compareTo(Date other) {
         if (this.year != other.year) {
@@ -84,11 +109,22 @@ public class Date implements Comparable <Date>{
 
     // Override toString()
     // Format the date
+    /**
+     * Provides a string representation of the date in mm/dd/yyyy format.
+     *
+     * @return a formatted string representation of the date
+     */
     @Override
     public String toString() {
         return String.format("%02d/%02d/%04d", month, day, year);
     }
 
+    /**
+     * Checks if this date is equal to another date.
+     *
+     * @param obj the object to compare with
+     * @return true if the dates are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -101,7 +137,10 @@ public class Date implements Comparable <Date>{
         return year == other.year && month == other.month && day == other.day;
     }
 
-    // Testbed main() method
+    /**
+     * Testbed main method to test the Date class.
+     * Mainly to test isValid() with 6 test cases
+     */
     public static void main(String[] args) {
         // Valid dates test cases
         System.out.println("Testing valid dates:");

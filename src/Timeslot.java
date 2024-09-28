@@ -1,4 +1,7 @@
-/*
+/**
+ * Enum representing the available timeslots during the clinic's working hours.
+ * Each timeslot contains an hour and a minute to specify the time.
+ *
  * @author Divit Shetty
  */
 public enum Timeslot {
@@ -13,28 +16,56 @@ public enum Timeslot {
     private final int minute;
 
     // Constructor for the enum
+    /**
+     * Constructs a timeslot with the specified hour and minute.
+     *
+     * @param hour   the hour of the timeslot
+     * @param minute the minute of the timeslot
+     */
     Timeslot(int hour, int minute) {
         this.hour = hour;
         this.minute = minute;
     }
 
     // Method to display the time in a readable format
+    /**
+     * Returns a string representation of the timeslot in HH:mm format.
+     *
+     * @return formatted string representing the timeslot
+     */
     @Override
     public String toString() {
         return String.format("%02d:%02d", hour, minute);
     }
 
     // Getter for the hour
+    /**
+     * Gets the hour of the timeslot.
+     *
+     * @return the hour of the timeslot
+     */
     public int getHour() {
         return hour;
     }
 
     // Getter for the minute
+    /**
+     * Gets the minute of the timeslot.
+     *
+     * @return the minute of the timeslot
+     */
     public int getMinute() {
         return minute;
     }
     
     // Get Timeslot by index
+    /**
+     * Returns the timeslot corresponding to the specified index.
+     *
+     * @param index the index of the timeslot (1 to 6)
+     * @return the corresponding Timeslot
+     * @throws IllegalArgumentException if the index is invalid
+     */
     public static Timeslot getIndex(int index) {
         switch (index) {
             case 1: return SLOT1;
@@ -48,6 +79,9 @@ public enum Timeslot {
     }
 
     // Testbed main
+    /**
+     * Testbed main method to test the Timeslot enum.
+     */
     public static void main(String[] args) {
         // Test valid timeslot retrieval by index
         System.out.println("Testing timeslot by index:");
