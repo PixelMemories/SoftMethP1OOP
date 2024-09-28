@@ -1,12 +1,19 @@
-/*
-* @author: Divit Shetty (dps190)
-*/
+/**
+ * The MedicalRecord class is a container for storing patient records.
+ * It allows for adding, finding, and removing patients, as well as
+ * managing their visit history.
+ *
+ * @author Divit Shetty
+ */
 public class MedicalRecord {
 
     private Patient[] patients; //Array of patients
     private int size; //Number of patients in the array
 
     //Constructor to initialize the medical record with the max size
+    /**
+     * Constructs an empty MedicalRecord with no patients initially.
+     */
     public MedicalRecord(){
         patients = new Patient[0];  // Start with an empty array
         size = 0;// Initially no patients
@@ -14,6 +21,10 @@ public class MedicalRecord {
 
     //Method to dynamically grow the array
     // It'll start empty then double in size when needed
+    /**
+     * Grows the patient array dynamically when it's full.
+     * Starts with an empty array and doubles its size when needed.
+     */
     private void grow() {
         if (patients.length == 0) {
             patients = new Patient[1];  // Initially grow to size 1 from empty
@@ -26,6 +37,12 @@ public class MedicalRecord {
 
     //Method to add a patient to the record
     //Named addPatient() because had another add method for Visits
+    /**
+     * Adds a new patient to the MedicalRecord.
+     *
+     * @param profile the profile of the patient to be added
+     * @return true if the patient is successfully added
+     */
     public boolean addPatient(Profile profile){
         if(size == patients.length){
             grow(); // grow the array if it's full
@@ -36,6 +53,12 @@ public class MedicalRecord {
     }
 
     //Method to find a patient via profile
+    /**
+     * Finds a patient in the MedicalRecord based on their profile.
+     *
+     * @param profile the profile of the patient to find
+     * @return the Patient if found, null otherwise
+     */
     public Patient findPatient(Profile profile) {
         for (int i = 0; i < size; i++) {
             if (patients[i].getProfile().equals(profile)) {
@@ -46,6 +69,13 @@ public class MedicalRecord {
     }
 
     //Method to add a visit for a patient
+    /**
+     * Adds a visit for an existing patient.
+     *
+     * @param profile     the profile of the patient
+     * @param appointment the appointment to add as a visit
+     * @return true if the visit is successfully added, false if the patient is not found
+     */
     public boolean addVisit(Profile profile, Appointment appointment){
         //Search for patients using findPatient
         Patient patient = findPatient(profile);
@@ -57,6 +87,12 @@ public class MedicalRecord {
     }
 
     //Method to remove a Patient
+    /**
+     * Removes a patient from the MedicalRecord.
+     *
+     * @param profile the profile of the patient to remove
+     * @return true if the patient is successfully removed, false if the patient is not found
+     */
     public boolean removePatient(Profile profile) {
         for (int i = 0; i < size; i++) {
             if (patients[i].getProfile().equals(profile)) {
@@ -73,6 +109,11 @@ public class MedicalRecord {
 
 
     //Method to print the visit history for a specific patient
+    /**
+     * Prints the visit history for a specified patient.
+     *
+     * @param profile the profile of the patient
+     */
     public void printPatientHistory(Profile profile) {
         Patient patient = findPatient(profile);
         if (patient == null) {
@@ -88,6 +129,9 @@ public class MedicalRecord {
     }
 
     //Testbed main for MedicalRecord. Not needed, just wanna make sure it works
+    /**
+     * Testbed main method to test the methods of the MedicalRecord class
+     */
     public static void main(String[] args) {
 
         // Create the MedicalRecord system with an initially empty array
