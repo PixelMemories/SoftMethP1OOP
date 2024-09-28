@@ -71,6 +71,7 @@ public class MedicalRecord {
         return false; // not found
     }
 
+
     //Method to print the visit history for a specific patient
     public void printPatientHistory(Profile profile) {
         Patient patient = findPatient(profile);
@@ -107,8 +108,13 @@ public class MedicalRecord {
         System.out.println("Add Bob Brown: " + medicalRecord.addPatient(profile4)); // Should print true
         System.out.println("Add Clara Jones: " + medicalRecord.addPatient(profile5)); // Should print true
 
+        //Test findPatient
+        System.out.println("findPatient John Doe: "+medicalRecord.findPatient(profile1));
+
         // Create test Appointments for the patients
         Appointment appointment1 = new Appointment(new Date(2024, Date.SEPTEMBER, 30), Timeslot.SLOT1, profile1, Provider.PATEL);
+        System.out.println("Timeslot: " + Timeslot.SLOT1);
+        System.out.println("Appointment Date: "+appointment1);
         Appointment appointment2 = new Appointment(new Date(2024, Date.OCTOBER, 1), Timeslot.SLOT2, profile2, Provider.LIM);
         Appointment appointment3 = new Appointment(new Date(2024, Date.OCTOBER, 2), Timeslot.SLOT3, profile1, Provider.ZIMNES);
 
@@ -118,6 +124,7 @@ public class MedicalRecord {
         System.out.println("Add appointment for John Doe: " + medicalRecord.addVisit(profile1, appointment1));
         System.out.println("Add appointment for Jane Smith: " + medicalRecord.addVisit(profile2, appointment2));
         System.out.println("Add another appointment for John Doe: " + medicalRecord.addVisit(profile1, appointment3));
+
 
         // Test printing patient history for each patient
         System.out.println("\nPrinting visit history for John Doe:");

@@ -80,7 +80,7 @@ public class Appointment implements Comparable<Appointment> {
         Profile profile1 = new Profile("John", "Doe", new Date(1989, Date.DECEMBER, 13));
         Profile profile2 = new Profile("Jane", "Smith", new Date(1990, Date.NOVEMBER, 5));
 
-
+        System.out.println("Profile1: " + profile1);
 
         // Create test Appointments (Works)
         Appointment appointment1 = new Appointment(new Date(2024, Date.SEPTEMBER, 30), Timeslot.SLOT1, profile1, Provider.PATEL);
