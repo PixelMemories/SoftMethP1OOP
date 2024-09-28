@@ -6,11 +6,14 @@ import java.util.Scanner;
 public class Scheduler {
 
     private MedicalRecord medicalRecord;
+    private List appointmentsList;
 
     //Constructor to initialize MedicalRecord
     //starts empty
     public Scheduler() {
         medicalRecord = new MedicalRecord();
+        appointmentsList = new List();
+
     }
 
     // Method to process each command in command line
@@ -63,6 +66,7 @@ public class Scheduler {
             //System.out.println("Testing: " + medicalRecord.addVisit(profile, appointment));
             // Add the appointment to the medical record
             if (medicalRecord.addVisit(profile, appointment)) {
+                appointmentsList.add(appointment);
                 System.out.println("Appointment scheduled.");
             } else {
                 System.out.println("Appointment couldn't be scheduled.");
