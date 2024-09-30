@@ -2,7 +2,7 @@
  * Enum representing the available medical providers.
  * Each provider has its own location and a specialty.
  *
- * @author Divit Shetty
+ * @author Divit Shetty (dps190)
  */
 public enum Provider {
     PATEL(Location.BRIDGEWATER, Speciality.FAMILY),

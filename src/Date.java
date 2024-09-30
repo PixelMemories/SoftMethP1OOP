@@ -2,7 +2,7 @@
  * This class represents a Date with year, month, and day.
  * Provides methods to check if a date is valid (isValid()) and to compare dates (compareTo())
  *
- * @author Divit Shetty
+ * @author Divit Shetty (dps190)
  */
 public class Date implements Comparable <Date>{
     private int year;

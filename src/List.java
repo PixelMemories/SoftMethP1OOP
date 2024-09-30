@@ -73,6 +73,7 @@ public class List {
     }
 
     public void printByPatient() {
+        System.out.println("** Appointments ordered by patient/date/time **");
         for (int i = 1; i < size; i++) {
             Appointment temp = appointments[i];
             int j = i - 1;
@@ -85,9 +86,11 @@ public class List {
         for (int i = 0; i < size; i++) {
             System.out.println(appointments[i]);
         }
+        System.out.println("** end of list **");
     }
 
     public void printByLocation() {
+        System.out.println("** Appointments ordered by county/date/time **");
         for (int i = 1; i < size; i++) {
             Appointment temp = appointments[i];
             int j = i - 1;
@@ -100,9 +103,12 @@ public class List {
         for (int i = 0; i < size; i++) {
             System.out.println(appointments[i]);
         }
+        System.out.println("** end of list **");
     }
 
+
     public void printByAppointment() {
+        System.out.println("** Appointments ordered by date/time/provider **");
         for (int i = 1; i < size; i++) {
             Appointment temp = appointments[i];
             int j = i - 1;
@@ -115,6 +121,7 @@ public class List {
         for (int i = 0; i < size; i++) {
             System.out.println(appointments[i]);
         }
+        System.out.println("** end of list **");
     }
 
     //Testbed main to see if it's working well with other classes

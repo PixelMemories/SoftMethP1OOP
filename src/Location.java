@@ -2,7 +2,7 @@
  * Enum representing various clinic locations.
  * Each location has a county and a zip code.
  *
- * @author Divit Shetty
+ * @author Divit Shetty (dps190)
  */
 public enum Location {
     BRIDGEWATER("Somerset", "08807"),
