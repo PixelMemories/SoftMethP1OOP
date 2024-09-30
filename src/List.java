@@ -1,10 +1,13 @@
+import java.util.Arrays;
+
 /**
- * The List class is an array-based implementation to manage a list of Appointment objects.
- * It allows adding, removing, and printing the appointments in different sorted orders.
- *
  * @author Richard Li - rl902
  */
-import java.util.Arrays;
+
+/**
+ * The List class is an array-based management of a list of Appointments.
+ * It allows adding, removing, and printing the appointments in different sorted orders.
+ */
 
 public class List {
     private Appointment[] appointments;

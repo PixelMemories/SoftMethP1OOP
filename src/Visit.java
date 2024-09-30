@@ -1,6 +1,7 @@
 /**
  * @author Richard Li - rl902
- * Represents a visit by a patient, which includes the appointment details and a linked list of visits.
+ * Represents a visit by a patient.
+ * This includes the appointment details and a linked list of visits.
  * Each Visit object can be linked to the next visit in the list.
  */
 
