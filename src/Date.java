@@ -1,3 +1,6 @@
+
+import java.util.Calendar;
+
 /**
  * This class represents a Date with year, month, and day.
  * Provides methods to check if a date is valid (isValid()) and to compare dates (compareTo())
@@ -62,31 +65,6 @@ public class Date implements Comparable <Date>{
         return false; // Not a leap year
     }
 
-
-    //isValid to check if the date is a valid calendar date
-    //works with isLeapYear to check if it's a leap year
-    /**
-     * Checks if the date is a valid calendar date.
-     *
-     * @return true if the date is valid, false otherwise
-     */
-    public boolean isValid() {
-        if (month < JANUARY || month > DECEMBER) {
-            return false;
-        }
-
-        // Days in each month
-        final int[] DAYS_IN_MONTH = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-        // Check for leap year in February
-        if (isLeapYear() && month == FEBRUARY) {
-            DAYS_IN_MONTH[FEBRUARY] = 29;
-        }
-
-        // Check for valid day in the month
-        return day >= MIN_DAY && day <= DAYS_IN_MONTH[month];
-    }
-
     // Override compareTo()
     // Intended to sort appointments by date
     /**
@@ -131,11 +109,123 @@ public class Date implements Comparable <Date>{
             return true;
         }
         if (obj == null || getClass() != obj.getClass()) {
-        return false;
+            return false;
         }
         Date other = (Date) obj;
         return year == other.year && month == other.month && day == other.day;
     }
+
+    //isValid to check if the date is a valid calendar date
+    //works with isLeapYear to check if it's a leap year
+    /**
+     * Checks if the date is a valid calendar date.
+     *
+     * @return true if the date is valid, false otherwise
+     */
+    public boolean isValid() {
+        // Check if the month is valid
+        if (month < JANUARY || month > DECEMBER) {
+            return false;
+        }
+
+        // Days in each month
+        final int[] DAYS_IN_MONTH = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        // Check for leap year in February
+        if (isLeapYear() && month == FEBRUARY) {
+            DAYS_IN_MONTH[FEBRUARY] = 29;
+        }
+
+        // Check if the day is valid for the given month
+        if (day < MIN_DAY || day > DAYS_IN_MONTH[month]) {
+            return false;
+        }
+
+
+        // If all checks pass, the date is valid
+        return true;
+    }
+
+    //helper to check appointments in the past or today
+    /**
+     * Checks if the date is today or before today.
+     *
+     * @return true if the date is today or before, false otherwise
+     */
+    public boolean isTodayOrBefore() {
+        // Get today's date
+        Calendar today = Calendar.getInstance();
+
+        // Create a Calendar object for the date to be checked
+        Calendar dateToCheck = Calendar.getInstance();
+        dateToCheck.set(year, month - 1, day);  // Calendar months are 0-based, so subtract 1 from the month
+
+        //if date is today or before today
+        if(dateToCheck.before(today) || dateToCheck.equals(today)){
+            return false;
+        }
+        return true;
+    }
+
+    //helper to check DOB in Scheduler
+    /**
+     * Checks if the date is today or after today.
+     *
+     * @return true if the date is today or after, false otherwise
+     */
+    public boolean isTodayOrAfter(){
+        Calendar today = Calendar.getInstance();
+        Calendar dateToCheck = Calendar.getInstance();
+        dateToCheck.set(year, month - 1, day);
+
+        // If the date is today or after, return false
+        if (dateToCheck.after(today) || dateToCheck.equals(today)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    //hepler to check if date is within 6 months in Scheduler
+    /**
+     * Checks if the date is within six months from today.
+     *
+     * @return true if the date is within six months, false otherwise
+     */
+    public boolean isWithinSixMonths() {
+        Calendar today = Calendar.getInstance();
+
+        Calendar dateToCheck = Calendar.getInstance();
+        dateToCheck.set(year, month - 1, day);
+
+        // Create a Calendar object for six months from today
+        Calendar sixMonthsFromToday = Calendar.getInstance();
+        sixMonthsFromToday.add(Calendar.MONTH, 6);  // Add 6 months to today's date
+
+        // Check if the date is not within the next six months
+        if (dateToCheck.after(sixMonthsFromToday)){
+            return false;
+        }
+        return true;
+    }
+
+    //helper method to check if an appointment date is the weekend
+    /**
+     * Checks if the date falls on a weekend.
+     *
+     * @return true if the date is not a weekend, false otherwise
+     */
+    public boolean isWeekend() {
+        Calendar dateToCheck = Calendar.getInstance();
+        dateToCheck.set(year, month - 1, day);
+        int dayOfWeek = dateToCheck.get(Calendar.DAY_OF_WEEK);
+        // Check if the day is Saturday or Sunday
+        if ((dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY)){
+            return false;
+        }
+        return true;
+    }
+
 
     /**
      * Testbed main method to test the Date class.

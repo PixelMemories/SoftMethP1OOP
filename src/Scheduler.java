@@ -2,7 +2,7 @@
 import java.util.Scanner;
 /**
  * The Scheduler class manages scheduling, canceling, and rescheduling appointments.
- * It processes user commands to implement several tasks.
+ * It processes user commands to implement several tasks (see writeup for more detail).
  * Commands include S (schedule), C (cancel), R (reschedule), PP, PS, PL, and PA.
  *
  * @author Divit Shetty (dps190) & Richard Li (rl902)
@@ -99,6 +99,7 @@ public class Scheduler {
         return true; // The provider is available
     }
 
+
     // Method to handle scheduling an appointment (S command)
     /**
      * Schedules a new appointment if all criteria are met.
@@ -109,25 +110,60 @@ public class Scheduler {
         try {
             // S,9/30/2024,1,John,Doe,12/13/1989,Patel
             Date appointmentDate = parseDate(tokens[1]);
+            if (!appointmentDate.isValid()) {
+                System.out.println("Appointment date: " + appointmentDate + " isn't a valid date");
+                return;
+            }
+            if (!appointmentDate.isTodayOrBefore()) {
+                System.out.println("Appointment date: " + appointmentDate + " today or a date before today");
+                return;
+            }
+            if (!appointmentDate.isWithinSixMonths()) {
+                System.out.println("Appointment date: " + appointmentDate + " is not within six months.");
+                return;
+            }
+            if (!appointmentDate.isWeekend()) {
+                System.out.println("Appointment date: " + appointmentDate + " Saturday or Sunday.");
+                return;
+            }
             Timeslot timeslot = Timeslot.getIndex(Integer.parseInt(tokens[2]));
-            Profile profile = new Profile(tokens[3], tokens[4], parseDate(tokens[5]));
+            Date dob = parseDate(tokens[5]);
+            if (!dob.isValid()) {
+                System.out.println("Patient dob: " + dob + " isn't a valid date");
+                return;
+            }
+            if (!dob.isTodayOrAfter()) {
+                System.out.println("Patient dob: " + dob + " is today or a date after today");
+                return;
+            }
+
+            Profile profile = new Profile(tokens[3], tokens[4], dob);
             medicalRecord.addPatient(profile);
             Provider provider = Provider.valueOf(tokens[6].toUpperCase());
 
             Appointment appointment = new Appointment(appointmentDate, timeslot, profile, provider);
-            if (providerAvailableForTimeslot(provider, appointmentDate, timeslot)){
+            if (providerAvailableForTimeslot(provider, appointmentDate, timeslot)) {
                 if (medicalRecord.addVisit(profile, appointment)) {
                     appointmentsList.add(appointment);
-                    System.out.println("Appointment scheduled.");
+                    System.out.printf("%s %s %s %s [%s, %s, %s %s, %s] booked.%n",
+                            appointmentDate,  // MM/DD/YYYY
+                            timeslot,         // hh:mm AM/PM
+                            profile.getFname(), profile.getLname(), profile.getDob(),
+                            provider.name(),
+                            provider.getLocation().getCity(),
+                            provider.getLocation().getCounty(),
+                            provider.getLocation().getZip(),
+                            provider.getSpecialty().name());
                 } else {
                     System.out.println("Appointment couldn't be scheduled.");
                 }
             } else {
                 System.out.println("Appointment couldn't be scheduled. Appointment already exists");
             }
-
+        } catch (IllegalArgumentException e) { //catch invalid timeslots
+            System.out.println(e.getMessage());
         } catch (Exception e) {
-            System.out.println("Invalid command!");
+            System.out.println("Invalid command!"); //any other errors
         }
     }
 
@@ -163,6 +199,7 @@ public class Scheduler {
             } else {
                 System.out.println("Appointment not found.");
             }
+
         } catch (Exception e) {
             System.out.println("Invalid command!");
         }
@@ -214,11 +251,12 @@ public class Scheduler {
             if (!appointmentFound) {
                 System.out.println("Appointment not found.");
             }
+        } catch (IllegalArgumentException e) { //catch invalid timeslots
+            System.out.println(e.getMessage());
         } catch (Exception e) {
             System.out.println("Invalid command!");
         }
     }
-
 
     //Method to generate billing statements (PS command)
     /**

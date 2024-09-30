@@ -74,7 +74,7 @@ public enum Timeslot {
             case 4: return SLOT4;
             case 5: return SLOT5;
             case 6: return SLOT6;
-            default: throw new IllegalArgumentException("Invalid timeslot index.");
+            default: throw new IllegalArgumentException(index + " isn't a valid time slot.");
         }
     }
 

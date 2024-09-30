@@ -1,5 +1,5 @@
 /**
- * The MedicalRecord class is a container for storing patient records.
+ * The MedicalRecord class is a container ("bag) for storing patient records.
  * It allows for adding, finding, and removing patients, as well as
  * managing their visit history.
  *
@@ -16,7 +16,7 @@ public class MedicalRecord {
      */
     public MedicalRecord(){
         patients = new Patient[0];  // Start with an empty array
-        size = 0;// Initially no patients
+        size = 0;// Nothing initially
     }
 
     //Method to dynamically grow the array
@@ -30,8 +30,8 @@ public class MedicalRecord {
             patients = new Patient[1];  // Initially grow to size 1 from empty
         } else {
             Patient[] temp = new Patient[patients.length * 2];  // Double the array size
-            System.arraycopy(patients, 0, temp, 0, size);       // Copy old array to new one
-            patients = temp;                                    // Reassign to the new array
+            System.arraycopy(patients, 0, temp, 0, size);// Copy old array to new one
+            patients = temp; // Reassign to the new array
         }
     }
 
@@ -107,12 +107,9 @@ public class MedicalRecord {
         return false; // not found
     }
 
-    //Method to print the visit history for a specific patient
-    /**
-     * Prints the visit history for a specified patient.
-     *
-     * @param profile the profile of the patient
-     */
+    // Test Method to print the visit history for a specific patient
+    // Used in main
+    //Used System.out but isn't used by the program. Just for testing MedicalRecord
     /*
     public void printPatientHistory(Profile profile) {
         Patient patient = findPatient(profile);
