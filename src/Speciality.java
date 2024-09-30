@@ -2,7 +2,7 @@
  * Enum representing different medical specialties.
  * Each specialty has its own associated charge for visits.
  *
- * @author Divit Shetty
+ * @author Divit Shetty (dps190)
  */
 public enum Speciality {
     FAMILY(250),         // $250 per visit

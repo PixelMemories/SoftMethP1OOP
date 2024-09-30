@@ -1,7 +1,13 @@
-/*
- * @author: Divit Shetty (dps190) & Richard Li (rl902)
- */
+
 import java.util.Scanner;
+/**
+ * The Scheduler class manages scheduling, canceling, and rescheduling appointments.
+ * It processes user commands to interact with a MedicalRecord and List of appointments.
+ * Commands include S (schedule), C (cancel), R (reschedule), and various print functions.
+ *
+ * @author Divit Shetty (dps190) & Richard Li (rl902)
+ */
+
 
 public class Scheduler {
 
@@ -9,15 +15,23 @@ public class Scheduler {
     private List appointmentsList;
 
     // Constructor to initialize MedicalRecord
+    /**
+     * Constructs a Scheduler with an empty MedicalRecord and appointments list.
+     */
     public Scheduler() {
         medicalRecord = new MedicalRecord();
         appointmentsList = new List();
     }
 
     // Method to process each command in command line
+    /**
+     * Processes user input commands to schedule, cancel, reschedule appointments, or print information.
+     *
+     * @param input the command line input
+     */
     private void processCommand(String input) {
         String[] tokens = input.split(",");
-        String command = tokens[0].toUpperCase();  // commands are case-sensitive (upper case)
+        String command = tokens[0];  // commands are case-sensitive (upper case)
 
         switch (command) {
             case "S":
@@ -45,11 +59,17 @@ public class Scheduler {
                 System.out.println("Scheduler is terminated.");
                 System.exit(0);
             default:
-                System.out.println("Invalid command.");
+                System.out.println("Invalid command!");
         }
     }
 
     // Helper method to parse a date string into a Date object
+    /**
+     * Parses a date string in the format mm/dd/yyyy.
+     *
+     * @param dateStr the date string to parse
+     * @return the Date object parsed from the string
+     */
     private Date parseDate(String dateStr) {
         String[] parts = dateStr.split("/");
         int month = Integer.parseInt(parts[0]);
@@ -58,6 +78,14 @@ public class Scheduler {
         return new Date(year, month, day);
     }
 
+    /**
+     * Checks if a provider is available for the given date and timeslot.
+     *
+     * @param provider the provider to check
+     * @param date the date of the appointment
+     * @param timeslot the timeslot of the appointment
+     * @return true if the provider is available, false otherwise
+     */
     private boolean providerAvailableForTimeslot(Provider provider, Date date, Timeslot timeslot) {
         for (int i = 0; i < appointmentsList.getSize(); i++) {
             Appointment appointment = appointmentsList.get(i);
@@ -72,6 +100,11 @@ public class Scheduler {
     }
 
     // Method to handle scheduling an appointment (S command)
+    /**
+     * Schedules a new appointment if all criteria are met.
+     *
+     * @param tokens the array of appointment details from the command line
+     */
     private void scheduleAppointment(String[] tokens) {
         try {
             // S,9/30/2024,1,John,Doe,12/13/1989,Patel
@@ -94,11 +127,16 @@ public class Scheduler {
             }
 
         } catch (Exception e) {
-            System.out.println("Error processing appointment: " + e.getMessage());
+            System.out.println("Invalid command!");
         }
     }
 
     // Method to handle canceling an appointment (C command)
+    /**
+     * Cancels an existing appointment based on the given details.
+     *
+     * @param tokens the array of appointment details from the command line
+     */
     private void cancelAppointment(String[] tokens) {
         try {
             // C,9/30/2024,1,John,Doe,12/13/1989
@@ -126,12 +164,17 @@ public class Scheduler {
                 System.out.println("Appointment not found.");
             }
         } catch (Exception e) {
-            System.out.println("Error canceling appointment: " + e.getMessage());
+            System.out.println("Invalid command!");
         }
     }
 
     // Method to handle rescheduling an appointment (R command)
-    // does not work
+    /**
+     * Reschedules an existing appointment to a new timeslot.
+     *
+     * @param tokens the array of appointment details from the command line
+     */
+
     private void rescheduleAppointment(String[] tokens) {
         try {
             Date appointmentDate = parseDate(tokens[1]);
@@ -172,11 +215,15 @@ public class Scheduler {
                 System.out.println("Appointment not found.");
             }
         } catch (Exception e) {
-            System.out.println("Error processing reschedule: " + e.getMessage());
+            System.out.println("Invalid command!");
         }
     }
 
-    //Method to generate billing statements
+
+    //Method to generate billing statements (PS command)
+    /**
+     * Prints the billing statements for all patients. (PS command)
+     */
     private void printBillingStatements() {
         System.out.println("** Billing statement ordered by patient **");
 
@@ -199,8 +246,10 @@ public class Scheduler {
         System.out.println("** end of list **");
     }
 
-
     // The run method to process user input commands
+    /**
+     * Main method to run the scheduler and process commands from the user.
+     */
     public void run() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Scheduler is running:");

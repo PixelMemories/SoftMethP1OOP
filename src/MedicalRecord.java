@@ -3,7 +3,7 @@
  * It allows for adding, finding, and removing patients, as well as
  * managing their visit history.
  *
- * @author Divit Shetty
+ * @author Divit Shetty(dps190)
  */
 public class MedicalRecord {
 
@@ -107,13 +107,13 @@ public class MedicalRecord {
         return false; // not found
     }
 
-
     //Method to print the visit history for a specific patient
     /**
      * Prints the visit history for a specified patient.
      *
      * @param profile the profile of the patient
      */
+    /*
     public void printPatientHistory(Profile profile) {
         Patient patient = findPatient(profile);
         if (patient == null) {
@@ -127,6 +127,7 @@ public class MedicalRecord {
             current = current.getNext();
         }
     }
+     */
 
     //Testbed main for MedicalRecord. Not needed, just wanna make sure it works
     /**
@@ -171,7 +172,7 @@ public class MedicalRecord {
         System.out.println("Add appointment for Jane Smith: " + medicalRecord.addVisit(profile2, appointment2));
         System.out.println("Add another appointment for John Doe: " + medicalRecord.addVisit(profile1, appointment3));
 
-
+        /*
         // Test printing patient history for each patient
         System.out.println("\nPrinting visit history for John Doe:");
         medicalRecord.printPatientHistory(profile1);
@@ -182,5 +183,6 @@ public class MedicalRecord {
         //should be empty
         System.out.println("\nPrinting visit history for Alice Johnson:");
         medicalRecord.printPatientHistory(profile3);
+         */
     }
 }

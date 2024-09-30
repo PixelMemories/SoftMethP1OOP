@@ -2,7 +2,7 @@
  * Enum representing the available timeslots during the clinic's working hours.
  * Each timeslot contains an hour and a minute to specify the time.
  *
- * @author Divit Shetty
+ * @author Divit Shetty (dps190)
  */
 public enum Timeslot {
     SLOT1(9, 0),
