@@ -47,7 +47,6 @@ public class List {
     // Add an appointment to the list
     public void add(Appointment appointment) {
         if (contains(appointment)) {
-            System.out.println("Appointment already exists.");
             return;
         }
 
@@ -62,7 +61,6 @@ public class List {
     public void remove(Appointment appointment) {
         int index = find(appointment);
         if (index == -1) {
-            System.out.println("Appointment not found.");
             return;
         }
 

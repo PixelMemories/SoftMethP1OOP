@@ -69,9 +69,11 @@ public class Appointment implements Comparable<Appointment> {
 
     @Override
     public String toString() {
-        String providerDetails = provider.toString(); // Assuming provider has an appropriate toString method
+        String providerName = provider.toString();
+        String providerTown = provider.getLocation().toString();
+        String providerSpec = provider.getSpecialty().toString();
         String patientDetails = String.format("%s %s %s", patient.getFname(), patient.getLname(), patient.getDob().toString());
-        return String.format("%s %s %s [%s]", date.toString(), timeslot.toString(), patientDetails, providerDetails);
+        return String.format("%s %s %s [%s, %s, %s]", date.toString(), timeslot.toString(), patientDetails, providerName, providerTown, providerSpec);
     }
 
     //Testbed Main for Appointment

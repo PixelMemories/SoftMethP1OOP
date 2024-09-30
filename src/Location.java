@@ -76,7 +76,7 @@ public enum Location {
      */
     @Override
     public String toString() {
-        return String.format("%s, %s County, Zip Code: %s", getCity(), county, zip);
+        return String.format("%s, %s %s", getCity(), county, zip);
     }
 
     // Testing the location enum
