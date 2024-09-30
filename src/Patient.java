@@ -52,7 +52,7 @@ public class Patient implements Comparable<Patient>{
 
     @Override
     public String toString() {
-        return "Patient: " + profile.toString() + ", Total Charges: " + charge();
+        return "Patient: " + profile.toString() + " [amount due: " + charge()+"]";
     }
 
 
