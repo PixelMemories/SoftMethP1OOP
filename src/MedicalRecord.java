@@ -121,7 +121,7 @@ public class MedicalRecord {
             return;
         }
         System.out.println("Visit history for " + profile.getFname() + " " + profile.getLname() + ":");
-        Visit current = patient.getVisits(); // Assuming you have a getFirstVisit method in Patient
+        Visit current = patient.getVisits();
         while (current != null) {
             System.out.println(current); // Calls toString() on Visit
             current = current.getNext();

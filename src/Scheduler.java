@@ -39,10 +39,10 @@ public class Scheduler {
                 appointmentsList.printByLocation();
                 break;
             case "PS":
-                //medicalRecord.printBillingHistory();
+                printBillingStatements();
                 break;
             case "Q":
-                System.out.println("Scheduler terminated.");
+                System.out.println("Scheduler is terminated.");
                 System.exit(0);
             default:
                 System.out.println("Invalid command.");
@@ -175,6 +175,30 @@ public class Scheduler {
             System.out.println("Error processing reschedule: " + e.getMessage());
         }
     }
+
+    //Method to generate billing statements
+    private void printBillingStatements() {
+        System.out.println("** Billing statement ordered by patient **");
+
+        //counter for numbering the list
+        int counter = 1;
+
+        // Loop through each appointment in appointmentsList
+        for (int i = 0; i < appointmentsList.getSize(); i++) {
+            Appointment appointment = appointmentsList.get(i);  // Get the appointment
+            Profile profile = appointment.getPatient();  // Get the profile of the patient
+
+            // Use findPatient method in MedicalRecord to retrieve the patient details
+            Patient patient = medicalRecord.findPatient(profile);
+            if (patient != null) {
+                System.out.println("(" + counter + ") " + patient);
+                counter++;
+            }
+        }
+
+        System.out.println("** end of list **");
+    }
+
 
     // The run method to process user input commands
     public void run() {
