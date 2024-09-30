@@ -2,13 +2,24 @@
  * @author Richard Li - rl902
  */
 
+/**
+ * Represents an appointment with a patient and a provider on a specific date and time.
+ * The appointment includes details such as the date, timeslot, patient profile, and provider.
+ */
 public class Appointment implements Comparable<Appointment> {
     private Date date;
     private Timeslot timeslot;
     private Profile patient;
     private Provider provider;
 
-    // Constructor
+    /**
+     * Constructs an Appointment instance with the specified date, timeslot, patient, and provider.
+     *
+     * @param date the date of the appointment
+     * @param timeslot the timeslot for the appointment
+     * @param patient the Profile of the patient associated with the appointment
+     * @param provider the Provider assigned to the appointment
+     */
     public Appointment(Date date, Timeslot timeslot, Profile patient, Provider provider) {
         this.date = date;
         this.timeslot = timeslot;
@@ -16,28 +27,51 @@ public class Appointment implements Comparable<Appointment> {
         this.provider = provider;
     }
 
-    // Getters (optional, in case you need them)
+    /**
+     * Returns the date of the appointment.
+     *
+     * @return the date of the appointment
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * Returns the timeslot of the appointment.
+     *
+     * @return the timeslot of the appointment
+     */
     public Timeslot getTimeslot() {
         return timeslot;
     }
 
+    /**
+     * Returns the patient profile associated with the appointment.
+     *
+     * @return the patient profile
+     */
     public Profile getPatient() {
         return patient;
     }
 
+    /**
+     * Returns the provider assigned to the appointment.
+     *
+     * @return the provider for the appointment
+     */
     public Provider getProvider() {
         return provider;
     }
 
+    /**
+     * Calculates the cost of the appointment based on the provider's specialty.
+     *
+     * @return the cost of the appointment
+     */
     public int getCost() {
         Speciality specialty = provider.getSpecialty();
         return specialty.getCharge();
     }
-
 
     @Override
     public int compareTo(Appointment other) {
@@ -76,8 +110,11 @@ public class Appointment implements Comparable<Appointment> {
         return String.format("%s %s %s [%s, %s, %s]", date.toString(), timeslot.toString(), patientDetails, providerName, providerTown, providerSpec);
     }
 
-    //Testbed Main for Appointment
-//Want to see if it works properly with Date
+    /**
+     * Testbed main method to demonstrate the functionality of the Appointment class.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
         // Create test Profile and Patient objects (Works)
         Profile profile1 = new Profile("John", "Doe", new Date(1989, Date.DECEMBER, 13));
