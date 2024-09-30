@@ -1,4 +1,7 @@
-/*
+/**
+ * The List class is an array-based implementation to manage a list of Appointment objects.
+ * It allows adding, removing, and printing the appointments in different sorted orders.
+ *
  * @author Richard Li - rl902
  */
 import java.util.Arrays;
@@ -8,15 +11,30 @@ public class List {
     private int size;
 
     // Constructor
+    /**
+     * Default constructor initializes an empty list with a capacity of 4.
+     */
     public List() {
         this.appointments = new Appointment[4];
         this.size = 0;
     }
 
+    /**
+     * Gets the size of the list.
+     *
+     * @return the number of appointments in the list
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Returns the appointment at the specified index.
+     *
+     * @param index the index of the appointment
+     * @return the Appointment at the specified index
+     * @throws IndexOutOfBoundsException if the index is invalid
+     */
     public Appointment get(int index) {
         if (index >= 0 && index < size) {
             return appointments[index];
@@ -25,6 +43,12 @@ public class List {
     }
 
     // Helper method to find the index of an appointment
+    /**
+     * Finds the index of a specific appointment in the list.
+     *
+     * @param appointment the appointment to find
+     * @return the index of the appointment, or -1 if not found
+     */
     private int find(Appointment appointment) {
         for (int i = 0; i < size; i++) {
             if (appointments[i].equals(appointment)) {
@@ -35,16 +59,31 @@ public class List {
     }
 
     // Helper method to grow the array size by 4
+    /**
+     * Grows the size of the array by 4 when it becomes full.
+     */
     private void grow() {
         appointments = Arrays.copyOf(appointments, appointments.length + 4);
     }
 
     // Check if the list contains an appointment
+    /**
+     * Checks if the list contains a specific appointment.
+     *
+     * @param appointment the appointment to check for
+     * @return true if the appointment exists in the list, false otherwise
+     */
     public boolean contains(Appointment appointment) {
         return find(appointment) != -1;
     }
 
     // Add an appointment to the list
+    /**
+     * Adds an appointment to the list if it doesn't already exist.
+     *
+     * @param appointment the appointment to add
+     * @return true if the appointment was added, false if it already exists
+     */
     public void add(Appointment appointment) {
         if (contains(appointment)) {
             return;
@@ -58,6 +97,12 @@ public class List {
     }
 
     // Remove an appointment from the list
+    /**
+     * Removes an appointment from the list if it exists.
+     *
+     * @param appointment the appointment to remove
+     * @return true if the appointment was removed, false if it was not found
+     */
     public void remove(Appointment appointment) {
         int index = find(appointment);
         if (index == -1) {
@@ -72,6 +117,11 @@ public class List {
         size--;
     }
 
+    /**
+     * Returns the appointments ordered by patient/date/time as a String.
+     *
+     * @return a String representation of the appointments ordered by patient/date/time
+     */
     public void printByPatient() {
         System.out.println("** Appointments ordered by patient/date/time **");
         for (int i = 1; i < size; i++) {
@@ -89,6 +139,11 @@ public class List {
         System.out.println("** end of list **");
     }
 
+    /**
+     * Returns the appointments ordered by location as a String.
+     *
+     * @return a String representation of the appointments ordered by location
+     */
     public void printByLocation() {
         System.out.println("** Appointments ordered by county/date/time **");
         for (int i = 1; i < size; i++) {
@@ -106,7 +161,11 @@ public class List {
         System.out.println("** end of list **");
     }
 
-
+    /**
+     * Returns the appointments ordered by date/time/provider as a String.
+     *
+     * @return a String representation of the appointments ordered by date/time/provider
+     */
     public void printByAppointment() {
         System.out.println("** Appointments ordered by date/time/provider **");
         for (int i = 1; i < size; i++) {
@@ -125,6 +184,9 @@ public class List {
     }
 
     //Testbed main to see if it's working well with other classes
+    /**
+     * Testbed main method to test the List class methods and see if they work with other classes.
+     */
     public static void main(String[] args) {
 
         // Create test Profiles (works)

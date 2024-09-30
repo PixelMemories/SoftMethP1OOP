@@ -2,8 +2,8 @@
 import java.util.Scanner;
 /**
  * The Scheduler class manages scheduling, canceling, and rescheduling appointments.
- * It processes user commands to interact with a MedicalRecord and List of appointments.
- * Commands include S (schedule), C (cancel), R (reschedule), and various print functions.
+ * It processes user commands to implement several tasks.
+ * Commands include S (schedule), C (cancel), R (reschedule), PP, PS, PL, and PA.
  *
  * @author Divit Shetty (dps190) & Richard Li (rl902)
  */
