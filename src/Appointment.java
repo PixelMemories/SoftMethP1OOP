@@ -38,6 +38,7 @@ public class Appointment implements Comparable<Appointment> {
         return specialty.getCharge();
     }
 
+
     @Override
     public int compareTo(Appointment other) {
         // Compare by date first

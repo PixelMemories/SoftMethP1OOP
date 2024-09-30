@@ -1,7 +1,6 @@
 /*
  * @author Richard Li - rl902
  */
-
 import java.util.Arrays;
 
 public class List {
@@ -12,6 +11,17 @@ public class List {
     public List() {
         this.appointments = new Appointment[4];
         this.size = 0;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public Appointment get(int index) {
+        if (index >= 0 && index < size) {
+            return appointments[index];
+        }
+        throw new IndexOutOfBoundsException("Invalid index.");
     }
 
     // Helper method to find the index of an appointment
@@ -64,53 +74,46 @@ public class List {
         size--;
     }
 
-    // Print appointments ordered by patient profile, then date/timeslot
     public void printByPatient() {
-        Arrays.sort(appointments, 0, size, (a, b) -> {
-            int profileCompare = a.getPatient().compareTo(b.getPatient());
-            if (profileCompare != 0) return profileCompare;
-
-            int dateCompare = a.getDate().compareTo(b.getDate());
-            if (dateCompare != 0) return dateCompare;
-
-            return a.getTimeslot().compareTo(b.getTimeslot());
-        });
-
+        for (int i = 1; i < size; i++) {
+            Appointment temp = appointments[i];
+            int j = i - 1;
+            while (j >= 0 && appointments[j].getPatient().compareTo(temp.getPatient()) > 0) {
+                appointments[j + 1] = appointments[j];
+                j--;
+            }
+            appointments[j + 1] = temp;
+        }
         for (int i = 0; i < size; i++) {
             System.out.println(appointments[i]);
         }
     }
 
-    // Print appointments ordered by location (provider's county), then date/timeslot
     public void printByLocation() {
-        Arrays.sort(appointments, 0, size, (a, b) -> {
-            int locationCompare = a.getProvider().getLocation().compareTo(b.getProvider().getLocation());
-            if (locationCompare != 0) return locationCompare;
-
-            int dateCompare = a.getDate().compareTo(b.getDate());
-            if (dateCompare != 0) return dateCompare;
-
-            return a.getTimeslot().compareTo(b.getTimeslot());
-        });
-
+        for (int i = 1; i < size; i++) {
+            Appointment temp = appointments[i];
+            int j = i - 1;
+            while (j >= 0 && appointments[j].getProvider().getLocation().compareTo(temp.getProvider().getLocation()) > 0) {
+                appointments[j + 1] = appointments[j];
+                j--;
+            }
+            appointments[j + 1] = temp;
+        }
         for (int i = 0; i < size; i++) {
             System.out.println(appointments[i]);
         }
     }
 
-    // Print appointments ordered by date/timeslot, then provider name
     public void printByAppointment() {
-        Arrays.sort(appointments, 0, size, (a, b) -> {
-            int dateCompare = a.getDate().compareTo(b.getDate());
-            if (dateCompare != 0) return dateCompare;
-
-            int timeslotCompare = a.getTimeslot().compareTo(b.getTimeslot());
-            if (timeslotCompare != 0) return timeslotCompare;
-
-            //return a.getProvider().getName().compareTo(b.getProvider().getName());
-            return 0; // need to talk abt provider
-        });
-
+        for (int i = 1; i < size; i++) {
+            Appointment temp = appointments[i];
+            int j = i - 1;
+            while (j >= 0 && appointments[j].compareTo(temp) > 0) {
+                appointments[j + 1] = appointments[j];
+                j--;
+            }
+            appointments[j + 1] = temp;
+        }
         for (int i = 0; i < size; i++) {
             System.out.println(appointments[i]);
         }

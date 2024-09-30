@@ -2,8 +2,6 @@
  * @author Richard Li - rl902
  */
 
-import java.util.Objects;
-
 public class Patient implements Comparable<Patient>{
 
     private Profile profile;
@@ -56,4 +54,6 @@ public class Patient implements Comparable<Patient>{
     public String toString() {
         return "Patient: " + profile.toString() + ", Total Charges: " + charge();
     }
+
+
 }
